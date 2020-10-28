@@ -1,0 +1,11 @@
+<!--pages/admin/admin_main.wxml-->
+<view>管理员界面</view>
+<view>用户token：{{token}}</view>
+  <view class="hr"></view>
+<view>用户ID：{{id}}</view>
+  <view class="hr"></view>
+<view>用户名：{{username}}</view>
+  <view class="hr"></view>
+<view>用户类型：{{permission}}</view>
+  <view class="hr"></view>
+<view>注册日期：{{regist_date}}</view>
