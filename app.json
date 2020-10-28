@@ -5,7 +5,8 @@
     "pages/techn/techn_main",
     "pages/users/user/user_main",
     "pages/admin/admin_main",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/users/personal/personal"
   ],
   "window": {
     "backgroundTextStyle": "light",
