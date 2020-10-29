@@ -39,20 +39,29 @@ Page({
           switch (permission) {
             case '0':
               console.log('普通用户登录成功');
-              wx.navigateTo({
-                url: '../../user_pages/main/main',
+              // wx.navigateTo({
+              //   url: '/pages/user_pages/main/main',
+              // });
+              wx.switchTab({
+                url: '/pages/user_pages/main/main',
               });
               break;
             case '1':
               console.log('技工');
-              wx.navigateTo({
-                url: '../../techn_pages/main/main'
+              // wx.navigateTo({
+              //   url: '/pages/techn_pages/main/main'
+              // });
+              wx.switchTab({
+                url: '/pages/techn_pages/main/main',
               });
               break;
             case '2':
               console.log('管理员');
-              wx.navigateTo({
-                url: '../../admin_pages/main/main'
+              // wx.navigateTo({
+              //   url: '/pages/admin_pages/main/main'
+              // });
+              wx.switchTab({
+                url: '/pages/admin_pages/main/main',
               });
               break;
           }

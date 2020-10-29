@@ -15,3 +15,5 @@
 <view>用户类型：{{permission}}</view>
   <view class="hr"></view>
 <view>注册日期：{{regist_date}}</view>
+<view class="hr"></view>
+<view>性别:{{gender}}</view>
