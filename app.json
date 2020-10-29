@@ -1,18 +1,63 @@
 {
   "pages": [
-    "pages/login/login",
+    "pages/admin_pages/main/main",
+    "pages/techn_pages/main/main",
+    "pages/user_pages/main/main",
+    "pages/common_pages/login/login",
+    "pages/user_pages/personal/personal",
+    
     "pages/logs/logs",
-    "pages/techn/techn_main",
-    "pages/users/user/user_main",
-    "pages/admin/admin_main",
     "pages/index/index",
-    "pages/users/personal/personal"
+    "pages/common_pages/password/password",
+    "pages/common_pages/new_password/new_password",
+    "pages/template/tabbar",
+    "pages/techn_pages/personal/personal",
+    "pages/admin_pages/personal/personal"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F1F0F6",
     "navigationBarTitleText": "报修小程序",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#dbdbdb",
+    "selectedColor": "#1296db",
+    "backgroundColor": "white",
+    "borderStyle": "white",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/user_pages/main/main",
+        "text": "首页",
+        "iconPath": "pages/static/img/befmain.png",
+        "selectedIconPath": "pages/static/img/main.png"
+      },
+      {
+        "pagePath": "pages/user_pages/personal/personal",
+        "text": "我的",
+        "iconPath": "pages/static/img/befme.png",
+        "selectedIconPath": "pages/static/img/me.png"
+      },
+      {
+        "pagePath": "pages/techn_pages/main/main",
+        "text": "首页",
+        "iconPath": "pages/static/img/befmain.png",
+        "selectedIconPath": "pages/static/img/main.png"
+      },
+      {
+        "pagePath": "pages/techn_pages/personal/personal",
+        "text": "我的",
+        "iconPath": "pages/static/img/befme.png",
+        "selectedIconPath": "pages/static/img/me.png"
+      },
+      {
+        "pagePath": "pages/admin_pages/main/main",
+        "text": "首页",
+        "iconPath": "pages/static/img/befmain.png",
+        "selectedIconPath": "pages/static/img/main.png"
+      }
+    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

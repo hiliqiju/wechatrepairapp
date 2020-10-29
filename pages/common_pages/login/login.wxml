@@ -1,0 +1,23 @@
+<!--pages/login/login.wxml-->
+<view class="container-fuild">
+  <view id="errors">
+    <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+  </view>
+  <form bindsubmit="formSubmit">
+    <view class="account">
+      <view class="title">账号</view>
+      <view class="num">
+        <input placeholder="用户名" type="text" name="username" placeholder-style="color:#999999;" />
+      </view>
+    </view>
+    <view class="hr"></view>
+    <view class="account">
+      <view class="title">密码</view>
+      <view class="num">
+        <input placeholder="请输入密码" name="password" password placeholder-style="color:#999999;" />
+      </view>
+    </view>
+    <view class="hr"></view>
+    <button form-type="submit" class="btn">登录</button>
+  </form>
+</view>

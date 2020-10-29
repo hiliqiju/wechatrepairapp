@@ -37,7 +37,7 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.0.4",
+  "libVersion": "2.12.2",
   "appid": "wx605a156ff5401653",
   "projectname": "repairapp",
   "debugOptions": {
