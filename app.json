@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/user_pages/main/main",
     "pages/admin_pages/main/main",
     "pages/techn_pages/main/main",
-    "pages/user_pages/main/main",
     "pages/common_pages/login/login",
     "pages/user_pages/personal/personal",
     
