@@ -4,7 +4,7 @@
     "pages/user_pages/main/main",
     "pages/admin_pages/main/main",
     "pages/techn_pages/main/main",
-
+    "pages/user_pages/baoxiujilu/baoxiujilu",
     "pages/user_pages/personal/personal",
     
     "pages/logs/logs",

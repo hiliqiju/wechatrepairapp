@@ -2,4 +2,35 @@
 <import src="../../template/tabbar.wxml"/>
 <template is="tabBar" data="{{tabBar:tabBar}}"></template>
 
-<view>我的页面</view>
+
+
+<view class="b1 float">
+  <view class="head float">
+    <open-data type="userAvatarUrl"></open-data>
+  </view>
+  <view class="name float">
+    <open-data type="userNickname"></open-data>
+    </view>
+</view>
+<view>等级level：{{level}}</view>
+<view class="hr"></view>
+<view>注册时间time：{{time}}</view>
+    <block wx:for="{{userListInfo}}">
+      <view class="b2">
+      <view class="b3">
+        <image src="{{item.icon}}"></image>
+      </view>
+      <view class="b4">
+        <view>{{item.text}}</view>
+      </view>
+      </view>
+        </block>
+      <view class="container">
+        <!--条目-->
+        <view class="container-items">
+        <text class="item" bindtap="xiugai">修改密码</text>
+        <text class="item" bindtap="chakan">查看报修记录</text>
+        </view>
+        </view>
+
+

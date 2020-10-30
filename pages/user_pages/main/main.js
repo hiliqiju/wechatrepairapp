@@ -38,6 +38,21 @@ Page({
     //加载本页面的tabBar样式
 
   },
+
+  queren:function(){
+    wx.showModal({
+      title: '提示',
+      content: '提交成功',
+      success (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+    
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -59,6 +74,50 @@ Page({
       'regist_date': this.formatDate(data.data.regist_date)
     })
   },
+  data:{
+    array: ['东1','东2','东3','东4','东5','东6','东7','东8'],
+    objectArray:[
+      {
+        id:0,
+        name: '东1'
+      },
+      {
+        id:1,
+        name: '东2'
+      },
+      {
+        id:2,
+        name: '东3'
+      },
+      {
+        id:3,
+        name: '东4'
+      },
+      {
+        id:4,
+        name: '东5'
+      },
+      {
+        id:5,
+        name: '东6'
+      },
+      {
+        id:6,
+        name: '东7'
+      },
+      {
+        id:7,
+        name: '东8'
+      }
+    ],
+    index: 0
+    },
+    bindPickerChange: function(e){
+      console.log('picker发送选择改变,携带值为',e.detail.value)
+      this.setData({
+        index:e.detail.value
+      })
+    },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -101,6 +160,7 @@ Page({
   onReachBottom: function () {
 
   },
+  
 
   /**
    * 用户点击右上角分享

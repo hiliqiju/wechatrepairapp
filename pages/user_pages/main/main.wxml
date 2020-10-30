@@ -5,15 +5,42 @@
 <!-- 以上代码不能删 -->
 
 
+<view class="content">
+  <view class="img">
+    <image src="../../static/img/ygxy-1.jpg" style="width:100%;height:230px;"></image>
+  </view>
+  
 <text>普通用户界面</text>
-<view>用户token：{{token}}</view>
-  <view class="hr"></view>
-<view>用户ID：{{id}}</view>
-  <view class="hr"></view>
-<view>用户名：{{username}}</view>
-  <view class="hr"></view>
-<view>用户类型：{{permission}}</view>
-  <view class="hr"></view>
-<view>注册日期：{{regist_date}}</view>
-<view class="hr"></view>
-<view>性别:{{gender}}</view>
+ 
+<view class="line"></view>
+<view class="item">
+<view class="myBackGround">
+  <view class="section__title">问题描述:{{inputValue}}</view>
+  <input bindinput="bindKeyInput" placeholder="输入同步到view中" />
+</view>
+</view>
+
+<view class="line"></view>
+<view class="item">
+<view class="myBackGround2">
+  <view class="section__title">备注:{{inputValue}}</view>
+  <input bindinput="bindKeyInput" placeholder="输入同步到view中" />
+</view>
+</view>
+
+<view class="line"></view>
+
+<view class="item">
+ <view class="section">
+   <view class="section__title">具体位置</view>
+   <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+     <view class="picker">
+       当前选择: {{array[index]}}
+     </view> 
+      </picker>
+      </view>
+    </view>
+
+    <button type="primary" bindtap="queren" size="default">确认</button>
+
+</view>

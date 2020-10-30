@@ -5,3 +5,27 @@
   width: 90%;
   margin: 0 auto;
 }
+.line{
+  height: 10px;
+}
+.item{
+  border: 1px solid #cccccc;
+  width: 90%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+}
+.myBackGround{
+  padding: 30px;
+  height: 100%;
+  width: 82%;
+  background-color: rgb(255, 255, 255);
+}
+
+.myBackGround2{
+  padding: 20px;
+  height: 100%;
+  width: 88%;
+  background-color: rgb(255, 255, 255);
+}
