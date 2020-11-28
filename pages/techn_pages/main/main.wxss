@@ -1,7 +1,72 @@
-/* pages/techn/techn_main.wxss */
-.hr{
-  border: 1px solid #cccccc;
-  opacity: 0.2;
-  width: 90%;
-  margin: 0 auto;
+page {
+    background-color: ghostwhite;
+}
+
+.content {
+    background-color: white;
+}
+
+.list {
+    padding: 20rpx;
+}
+
+.hr {
+    height: 5rpx;
+    background-color: #cccccc;
+    opacity: 0.2;
+    margin-top: 15rpx;
+}
+
+image {
+    height: 150rpx;
+    width: 150rpx;
+}
+
+.list-item {
+    display: flex;
+    flex-direction: row;
+}
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    line-height: 50rpx;
+    font-size: small;
+}
+
+.sta-rep {
+    display: flex;
+    flex-direction: row;
+}
+
+.remark {
+    color: #999999;
+}
+
+.site {
+    color: #999999;
+}
+
+/*一下设置switch大小*/
+.repair-time {
+    position: absolute;
+    right: 120rpx;
+    color: #999999;
+}
+
+.wx-switch-input {
+    width: 42px !important;
+    height: 20px !important;
+}
+
+
+.wx-switch-input::before {
+    width: 41px !important;
+    height: 20px !important;
+}
+
+/*小圆球*/
+.wx-switch-input::after {
+    width: 18px !important;
+    height: 18px !important;
 }

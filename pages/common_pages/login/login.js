@@ -1,88 +1,68 @@
 // pages/login/login.js
 Page({
 
-  // page.js示例代码
-  data: {
-    error: ''
-  },
-  onShow() {
-    this.setData({
-      error: '这是一个错误提示'
-    })
-  },
-
   /**
    * 页面的初始数据
    */
   // data: {},
   formSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为:', e.detail.value)
-    var username = e.detail.value.username;
-    var password = e.detail.value.password;
-    wx.request({
-      url: 'http://119.45.143.167/repairapp/v1/login',
-      data: {
-        "username": username,
-        "password": password
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      method: 'POST',
-      success: function (res) {
-        var data = res.data
-        var code = res.data.code;
-        var msg = res.data.msg;
-        var permission = res.data.data.permission
-        wx.setStorageSync('data', data);
-        if (code == 2000) {
-          switch (permission) {
-            case '0':
-              console.log('普通用户登录成功');
-              // wx.navigateTo({
-              //   url: '/pages/user_pages/main/main',
-              // });
-              wx.switchTab({
-                url: '/pages/user_pages/main/main',
-              });
-              break;
-            case '1':
-              console.log('技工');
-              // wx.navigateTo({
-              //   url: '/pages/techn_pages/main/main'
-              // });
-              wx.switchTab({
-                url: '/pages/techn_pages/main/main',
-              });
-              break;
-            case '2':
-              console.log('管理员');
-              // wx.navigateTo({
-              //   url: '/pages/admin_pages/main/main'
-              // });
-              wx.switchTab({
-                url: '/pages/admin_pages/main/main',
-              });
-              break;
+    let username = e.detail.value.username;
+    let password = e.detail.value.password;
+    if (username === '') {
+      wx.showToast({
+        title: '请填写账号',
+        icon: 'none',
+        duration: 1500
+      })
+    } else if (password === '') {
+      wx.showToast({
+        title: '请填写密码',
+        icon: 'none',
+        duration: 1500
+      })
+    } else {
+      wx.request({
+        url: 'http://119.45.143.167:5001/repairapp/v1/login',
+        data: {
+          "username": username,
+          "password": password
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        method: 'POST',
+        success: function (res) {
+          let code = res.data.code;
+          let msg = res.data.msg;
+          let permission = res.data.data.permission;
+          //将数据存进缓存中
+          wx.setStorageSync('info', res.data);
+          if (code === 2000) {
+            switch (permission) {
+              case '0':
+                wx.switchTab({
+                  url: '/pages/user_pages/main/main',
+                });
+                break;
+              case '1':
+                wx.switchTab({
+                  url: '/pages/techn_pages/main/main',
+                });
+                break;
+            }
+          } else {
+            wx.showToast({
+              title: msg,
+              icon: 'none',
+              duration: 1500
+            })
           }
-        } else if (code == 2002) {
-          console.log('密码错误');
-          wx.showToast({
-            title: msg,
-            duration: 2000
-          })
-        } else {
-          console.log('用户不存在');
-          wx.showToast({
-            title: msg,
-            duration: 2000
-          })
-        }
-      },
-      fail: function (res) {
-        console.log('fail', res.data)
-      },
-    })
+        },
+        fail: function (res) {
+          console.log('fail', res.data)
+        },
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载

@@ -1,7 +1,28 @@
 <!--pages/techn_pages/personal/personal.wxml-->
-<!-- 导入底部导航模板 -->
+        <!-- 导入底部导航模板 -->
 <import src="../../template/tabbar.wxml"/>
 <template is="tabBar" data="{{tabBar:tabBar}}"></template>
-<!-- 以上代码不能删 -->
-
-<text>pages/techn_pages/personal/personal.wxml</text>
+        <!-- 以上代码不能删 -->
+<view class="content">
+    <view class="head">
+        <view class="head-line">
+            <view>
+                <image src="../../static/img/name.png"></image>
+            </view>
+            <view class="info">{{username}}</view>
+        </view>
+        <view class="hr"></view>
+        <view class="head-line">
+            <view>
+                <image src="../../static/img/grade.png"></image>
+            </view>
+            <view class="info">{{permission}}</view>
+        </view>
+    </view>
+    <view class="body">
+        <view class="link" bindtap="modifyPwd">
+            <view class="mod-pwd">修改密码</view>
+            <view class="rrar">></view>
+        </view>
+    </view>
+</view>

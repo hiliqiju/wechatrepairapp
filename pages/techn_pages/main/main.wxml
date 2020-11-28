@@ -1,16 +1,40 @@
 <!--pages/techn/techn_main.wxml-->
-<!-- 导入底部导航模板 -->
+        <!-- 导入底部导航模板 -->
 <import src="../../template/tabbar.wxml"/>
 <template is="tabBar" data="{{tabBar:tabBar}}"></template>
-<!-- 以上代码不能删 -->
 
-<text>技术人员界面</text>
-<view>用户token：{{token}}</view>
-  <view class="hr"></view>
-<view>用户ID：{{id}}</view>
-  <view class="hr"></view>
-<view>用户名：{{username}}</view>
-  <view class="hr"></view>
-<view>用户类型：{{permission}}</view>
-  <view class="hr"></view>
-<view>注册日期：{{regist_date}}</view>
+
+<wxs module="dateUtil" src="../../common_pages/formatTime.wxs"></wxs>
+<view class="content">
+    <block wx:for="{{result}}" wx:key="id">
+        <view class="list">
+            <view class="list-item">
+                <view wx:if="{{item.img_name!=='无'}}" bindtap="previewImg" data-name="{{item.img_name}}">
+                    <image mode="aspectFit"
+                           src="{{'http://119.45.143.167:5001/repairapp/v1/get/imgs?img_name='+item.img_name}}">
+                    </image>
+                </view>
+                <view wx:else>
+                    <image mode="aspectFit" src="../../static/img/noimg.png"></image>
+                </view>
+                <view class="detail">
+                    <view class="desc">{{item.desc}}</view>
+                    <view class="remark">备注：{{item.remark}}</view>
+                    <view class=" site">{{item.site}}</view>
+                    <view class="sta-rep">
+                        <view wx:if="{{item.status==='待处理'}}" style="color:red;">
+                            {{item.status}}
+                        </view>
+                        <view style="margin-left: 50rpx">
+                            <switch data-id="{{item.id}}" color="cornflowerblue" in bind:change="switchStatus"
+                                    checked="{{status}}"/>
+                        </view>
+                        <view class="repair-time">{{dateUtil.formatTime(item.repair_date)}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="hr"></view>
+    </block>
+    <view style="height: 100rpx"></view>
+</view>

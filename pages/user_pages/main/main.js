@@ -2,122 +2,147 @@
 const app = getApp();
 
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    'gender': '男',
-
+    imgPath: null,
+    token: null,
   },
 
-  //自定义函数格式化日期
-  formatDate: function (time) {
-    var date = new Date(time);
-
-    var year = date.getFullYear(),
-      month = date.getMonth() + 1, //月份是从0开始的
-      day = date.getDate(),
-      hour = date.getHours(),
-      min = date.getMinutes(),
-      sec = date.getSeconds();
-    var preArr = Array.apply(null, Array(10)).map(function (elem, index) {
-      return '0' + index;
-    });
-
-    var newTime = year + '-' +
-      (preArr[month] || month) + '-' +
-      (preArr[day] || day) + ' ' +
-      (preArr[hour] || hour) + ':' +
-      (preArr[min] || min) + ':' +
-      (preArr[sec] || sec);
-
-    return newTime;
-  },
-  onShow: function () {
-    //加载本页面的tabBar样式
-
-  },
-
-  queren:function(){
-    wx.showModal({
-      title: '提示',
-      content: '提交成功',
-      success (res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
+  //上传
+  localImg: function () {
+    let that = this;
+    wx.chooseImage({
+      count: 1, //一张
+      sizeType: ['original'], //原图
+      sourceType: ['album'], //相册
+      success: function (res) {
+        that.setData({
+          imgPath: res.tempFilePaths[0]
+        })
       }
     })
-    
   },
+  uploadImg: function () {
+    let that = this;
+    wx.chooseImage({
+      count: 1, //一张
+      sizeType: ['original'], //原图
+      sourceType: ['camera'], //相机
+      success: function (res) {
+        that.setData({
+          imgPath: res.tempFilePaths[0]
+        })
+      }
+    })
+  },
+  //submit事件
+  formSubmit: function (e) {
+    let that = this;
+    let desc = e.detail.value.desc;
+    let remark = e.detail.value.remark;
+    let site = e.detail.value.site;
+    if (desc === '') {
+      wx.showToast({
+        title: '请填写问题描述',
+        icon: 'none',
+        duration: 1500
+      })
+    } else if (site === '') {
+      wx.showToast({
+        title: '请填写具体位置',
+        icon: 'none',
+        duration: 1500
+      })
+    } else if (that.data.imgPath === null) {
+      wx.request({
+        url: 'http://119.45.143.167:5001/repairapp/v1/add/affairs',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+          'token': that.data.token
+        },
+        method: 'POST',
+        data: {
+          desc: desc,
+          remark: remark,
+          site: site,
+        },
+        success: function (res) {
+          if (res.data.code === 2000) {
+            wx.showToast({
+              title: '成功提交',
+              icon: 'success',
+              duration: 1500
+            })
+          }
+        },
+        fail: function (res) {
+          console.log('返回失败: ', res);
+          wx.showToast({
+            title: '提交失败',
+            icon: 'none',
+            duration: 1500
+          });
+        }
+      })
+      return false;
+    } else {
+      wx.uploadFile({
+        filePath: that.data.imgPath,
+        name: 'img',
+        url: 'http://119.45.143.167:5001/repairapp/v1/add/affairs',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+          'token': that.data.token
+        },
+        method: 'POST',
+        formData: {
+          desc: desc,
+          remark: remark,
+          site: site,
+        },
+        success: function (res) {
+          if (res.data.code === 2000) {
+            wx.showToast({
+              title: '成功提交',
+              icon: 'success',
+              duration: 1500
+            })
+          }
+
+        },
+        fail: function (res) {
+          console.log('返回失败: ', res);
+          wx.showToast({
+            title: '提交失败',
+            icon: 'none',
+            duration: 1500
+          });
+        }
+      });
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
     //加载本页面的tabBar样式
     wx.hideTabBar({
       success: function () {
         app.onTabBar('user');
       }
+    });
+    //获取缓存中的值
+    let info = wx.getStorageSync("info");
+    that.setData({
+      token: info.token
     })
 
-    //获取缓存中的数据
-    var data = wx.getStorageSync("data");
-    this.setData({
-      'token': data.token,
-      'id': data.data.id,
-      'username': data.data.username,
-      'permission': data.data.permission,
-      'regist_date': this.formatDate(data.data.regist_date)
-    })
   },
-  data:{
-    array: ['东1','东2','东3','东4','东5','东6','东7','东8'],
-    objectArray:[
-      {
-        id:0,
-        name: '东1'
-      },
-      {
-        id:1,
-        name: '东2'
-      },
-      {
-        id:2,
-        name: '东3'
-      },
-      {
-        id:3,
-        name: '东4'
-      },
-      {
-        id:4,
-        name: '东5'
-      },
-      {
-        id:5,
-        name: '东6'
-      },
-      {
-        id:6,
-        name: '东7'
-      },
-      {
-        id:7,
-        name: '东8'
-      }
-    ],
-    index: 0
-    },
-    bindPickerChange: function(e){
-      console.log('picker发送选择改变,携带值为',e.detail.value)
-      this.setData({
-        index:e.detail.value
-      })
-    },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -136,9 +161,7 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-
-  },
+  onHide: function () {},
 
   /**
    * 生命周期函数--监听页面卸载
@@ -160,7 +183,7 @@ Page({
   onReachBottom: function () {
 
   },
-  
+
 
   /**
    * 用户点击右上角分享

@@ -1,7 +1,0 @@
-<!--pages/admin_pages/personal/personal.wxml-->
-<!-- 导入底部导航模板 -->
-<import src="../../template/tabbar.wxml"/>
-<template is="tabBar" data="{{tabBar:tabBar}}"></template>
-<!-- 以上代码不能删 -->
-
-<text>pages/admin_pages/personal/personal.wxml</text>

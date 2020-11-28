@@ -2,33 +2,27 @@
   "pages": [
     "pages/common_pages/login/login",
     "pages/user_pages/main/main",
-    "pages/admin_pages/main/main",
     "pages/techn_pages/main/main",
+    "pages/techn_pages/personal/personal",
+    "pages/common_pages/modify_pwd/modify_pwd",
     "pages/user_pages/baoxiujilu/baoxiujilu",
     "pages/user_pages/personal/personal",
-    
     "pages/logs/logs",
     "pages/index/index",
-    "pages/common_pages/password/password",
-    "pages/common_pages/new_password/new_password",
-    "pages/template/tabbar",
-    "pages/techn_pages/personal/personal",
-    "pages/admin_pages/personal/personal"
+    "pages/template/tabbar"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F1F0F6",
+    "navigationBarBackgroundColor": "#4889db",
     "navigationBarTitleText": "报修小程序",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
-    "color": "#dbdbdb",
-    "selectedColor": "#1296db",
-    "backgroundColor": "white",
-    "borderStyle": "white",
+    "borderStyle": "black",
+    "color": "#999999",
+    "backgroundColor": "grey",
     "position": "bottom",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/user_pages/main/main",
         "text": "首页",
         "iconPath": "pages/static/img/befmain.png",
@@ -51,12 +45,6 @@
         "text": "我的",
         "iconPath": "pages/static/img/befme.png",
         "selectedIconPath": "pages/static/img/me.png"
-      },
-      {
-        "pagePath": "pages/admin_pages/main/main",
-        "text": "首页",
-        "iconPath": "pages/static/img/befmain.png",
-        "selectedIconPath": "pages/static/img/main.png"
       }
     ]
   },

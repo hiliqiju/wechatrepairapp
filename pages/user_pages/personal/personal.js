@@ -2,100 +2,95 @@
 const app = getApp();
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-  userListInfo:[{
-    icon:"/../pages/static/img/xiugai-1.png",
-    text:'修改密码',
-  },{
-    icon:'/pages/static/img/bs-1.png',
-    text:'查看报修记录',
-  }]
-  },
+    /**
+     * 页面的初始数据
+     */
+    data: {
+        username: null,
+        permission: null,
+        token: null,
+    },
+    //跳转到修改密码界面
+    modifyPwd: function () {
+        wx.navigateTo({
+            url: '../../common_pages/modify_pwd/modify_pwd',
+        })
+    },
+    //跳转到保修记录界面
+    repairHistory: function () {
+        wx.navigateTo({
+            url: '../baoxiujilu/baoxiujilu',
+        })
+    },
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function (options) {
+        //加载本页面的tabBar样式
+        wx.hideTabBar({
+            success: function () {
+                app.onTabBar('user');
+            }
+        });
+        //获取缓存中的数据
+        let info = wx.getStorageSync("info");
+        let grade = null;
+        if (info.data.permission === '0') {
+            grade = '普通用户'
+        }
+        this.setData({
+            token: info.token,
+            username: info.data.username,
+            permission: grade
+        })
+    },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    //加载本页面的tabBar样式
-    wx.hideTabBar({
-      success: function () {
-        app.onTabBar('user');
-      }
-    });
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function () {
 
-   
+    },
 
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
 
-    var that =this
-//调用应用实例的方法获取全局数据
+    },
 
-  },
- 
-   /**
-   * 转向修改密码页面
-   */
-  xiugai:function(){
-    wx.navigateTo({
-      url: '/pages/common_pages/password/password',
-    })
-  },
-   /**
-   * 转向查看报修记录页面
-   */
-  chakan:function(){
-    wx.navigateTo({
-      url: '/pages/user_pages/baoxiujilu/baoxiujilu',
-    })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide: function () {
 
-  },
+    },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function () {
 
-  },
+    },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function () {
 
-  },
+    },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom: function () {
 
-  },
+    },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage: function () {
 
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+    }
 })
